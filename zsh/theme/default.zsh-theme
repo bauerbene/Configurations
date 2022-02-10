@@ -1,84 +1,32 @@
-# # af-magic.zsh-theme
-# #
-# # Author: Andy Fleming
-# # URL: http://andyfleming.com/
-
-# # dashed separator size
-# function afmagic_dashes {
-#   # check either virtualenv or condaenv variables
-#   local python_env="${VIRTUAL_ENV:-$CONDA_DEFAULT_ENV}"
-
-#   # if there is a python virtual environment and it is displayed in
-#   # the prompt, account for it when returning the number of dashes
-#   if [[ -n "$python_env" && "$PS1" = \(* ]]; then
-#     echo "$(( COLUMNS - ${#python_env} - 3 ))"
-#   else
-#     echo $COLUMNS
-#   fi
-# }
-
-# # primary prompt: dashed separator, directory and vcs info
-# #PS1="${FG[237]}\${(l.\$(afmagic_dashes)..-.)}%{$reset_color%}
-# #${FG[032]}%~\$(git_prompt_info)\$(hg_prompt_info) ${FG[105]}%(!.#.»)%{$reset_color%} "
-
-# #PS1="%F{237}\${(l.\$(afmagic_dashes)..-.)}%F{015}
-# #%F{190}%~\$(git_prompt_info) \$ %F{172}%(!.#.») %F{reset}"
-
-# #PS2="%{$fg[red]%}\ %{$reset_color%}"
-
-# # right prompt: return code, virtualenv and context (user@host)
-# #RPS1="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-# #if (( $+functions[virtualenv_prompt_info] )); then
-# #  RPS1+='$(virtualenv_prompt_info)'
-# #fi
-# #RPS1+=" ${fg[237]}%n@%m%{$reset_color%}"
-
-# PS1="hallo"
-# PS2="hallo2"
-# RPS1="hallor1"
-# RPS2="Hallor2"
-
-# # git settings
-# ZSH_THEME_GIT_PROMPT_PREFIX=" ${FG[075]}(${FG[078]}"
-# ZSH_THEME_GIT_PROMPT_PREFIX=" %F{075}%(%F{078}%"
-# ZSH_THEME_GIT_PROMPT_CLEAN=""
-# ZSH_THEME_GIT_PROMPT_DIRTY="${FG[214]}*%{$reset_color%}"
-# ZSH_THEME_GIT_PROMPT_DIRTY="%F{214}%*%F{015}%"
-# ZSH_THEME_GIT_PROMPT_SUFFIX="${FG[075]})%{$reset_color%}"
-# ZSH_THEME_GIT_PROMPT_SUFFIX="%F{075}%)%F{reset}"
-
-# # virtualenv settings
-# #ZSH_THEME_VIRTUALENV_PREFIX="[lkjlkj"
-# #ZSH_THEME_VIRTUALENV_SUFFIX="]"
-
 function dashes {
+  # check either virtualenv or condaenv variables
   local python_env="${VIRTUAL_ENV:-$CONDA_DEFAULT_ENV}"
 
+  # if there is a python virtual environment and it is displayed in
+  # the prompt, account for it when returning the number of dashes
   if [[ -n "$python_env" && "$PS1" = \(* ]]; then
-    echo $(( COLUMNS - ${#python_env} - 3 ))
+    echo "$(( COLUMNS - ${#python_env} - 3 ))"
   else
     echo $COLUMNS
   fi
 }
 
-PS1="${FG[237]}\${(1.\$(dashes)..-.)]%{$reset_color%}
-${FG[032]}%~\$(git_prompt_info)\$(hg_prompt_info) ${FG[105]}%(!.#.»)%{$reset_color%} "
-PS2="%{$fg[red]%}\ %{$reset_color%}"
+PS1="%F{239}%\${(l.\$(dashes)..-.)}%F{075}
+%F{104}%~\$(git_prompt_info) %F{190}%(!.#.») %F{075}% "
+PS2="%{$fg[red]%}» %F{075}"
 
-RPS1="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+
+RPS1="%(?..%{$fg[red]%}%? ↵%F{015})"
 if (( $+functions[virtualenv_prompt_info] )); then
   RPS1+='$(virtualenv_prompt_info)'
 fi
-RPS1+=" ${FG[237]}%n@%m%{$reset_color%}"
+RPS1+=" %F{239}%n@%m%F{015}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX=" ${FG[075]}(${FG[078]}"
-#ZSH_THEME_GIT_PROMPT_PREFIX=" %F{075}%(%F{078}%"
+ZSH_THEME_GIT_PROMPT_PREFIX=" %F{075} (%F{078}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
-ZSH_THEME_GIT_PROMPT_DIRTY="${FG[214]}*%{$reset_color%}"
-#ZSH_THEME_GIT_PROMPT_DIRTY="%F{214}%*%F{015}%"
-ZSH_THEME_GIT_PROMPT_SUFFIX="${FG[075]})%{$reset_color%}"
-#ZSH_THEME_GIT_PROMPT_SUFFIX="%F{075}%)%F{reset}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{214}*%F{015}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%F{075})%F{015}"
 
 # virtualenv settings
-ZSH_THEME_VIRTUALENV_PREFIX=" ${FG[075]}["
-ZSH_THEME_VIRTUALENV_SUFFIX="]%{$reset_color%}"
+ZSH_THEME_VIRTUALENV_PREFIX=" %F{075}["
+ZSH_THEME_VIRTUALENV_SUFFIX="]%F{015}"
