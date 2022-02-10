@@ -63,7 +63,6 @@ function dashes {
 
 PS1="${FG[237]}\${(1.\$(dashes)..-.)]%{$reset_color%}
 ${FG[032]}%~\$(git_prompt_info)\$(hg_prompt_info) ${FG[105]}%(!.#.»)%{$reset_color%} "
-PS1="dasisteintest"
 PS2="%{$fg[red]%}\ %{$reset_color%}"
 
 RPS1="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
