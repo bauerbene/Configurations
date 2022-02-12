@@ -31,7 +31,5 @@ wget -O ${HOME}/.zshrc https://raw.githubusercontent.com/bauerbene/Configuration
 echo "${YELLOW}Please insert sudo password to install zsh and zplug${NC}"
 sudo apt update && sudo apt install zsh zplug -y
 
-echo "${YELLOW}Please insert user password to set zsh as default shell${NC}"
-chsh -s /bin/zsh
-
 echo "${GREEN}Finished zsh setup. If there are no errors above, you can start using zsh.${NC}"
+echo "${YELLOW}If you want to set zsh as default shell use the command 'chsh -s /bin/zsh'${NC}"
